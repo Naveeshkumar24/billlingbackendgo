@@ -5,31 +5,31 @@ import "net/http"
 type BillingPo struct {
 	ID              int     `json:"id"`
 	Timestamp       string  `json:"timestamp"`
-	EnggName        string  `json:"Engg_Name"`
-	Supplier        string  `json:"Supplier"`
-	BillNo          string  `json:"Bill_No"`
-	BillDate        string  `json:"Bill_Date"`
-	CustomerName    string  `json:"Customer_Name"`
-	CustomerPoNo    string  `json:"Customer_Po_No"`
-	CustomerPoDate  string  `json:"Customer_Po_Date"`
-	ItemDescription string  `json:"Item_Description"`
-	BilledQty       int     `json:"Billed_Qty"`
+	EnggName        string  `json:"engg_Name"`
+	Supplier        string  `json:"supplier"`
+	BillNo          string  `json:"bill_No"`
+	BillDate        string  `json:"bill_Date"`
+	CustomerName    string  `json:"customer_Name"`
+	CustomerPoNo    string  `json:"customer_Po_No"`
+	CustomerPoDate  string  `json:"customer_Po_Date"`
+	ItemDescription string  `json:"item_Description"`
+	BilledQty       int     `json:"billed_Qty"`
 	Unit            string  `json:"unit"`
-	NetValue        float64 `json:"Net_Value"`
-	CGST            float64 `json:"CGST"`
-	IGST            float64 `json:"IGST"`
-	Totaltax        float64 `json:"Total_tax"`
-	Gross           float64 `json:"Gross"`
-	DispatchThrough string  `json:"Dispatch_Through"`
+	NetValue        float64 `json:"net_Value"`
+	CGST            float64 `json:"cgst"`
+	IGST            float64 `json:"igst"`
+	Totaltax        float64 `json:"total_tax"`
+	Gross           float64 `json:"gross"`
+	DispatchThrough string  `json:"dispatch_through"`
 }
 type BillingPoDropDown struct {
-	EnggName     string `json:"Engg_Name"`
-	Supplier     string `json:"Supplier"`
-	CustomerName string `json:"Customer_Name"`
-	Unit         string `json:"unit"`
+	EnggName     string `json:"engg_name"`
+	Supplier     string `json:"supplier_name"`
+	CustomerName string `json:"customer_name"`
+	Unit         string `json:"unit_name"`
 }
 
-type CustomerPoInterface interface {
+type BillingPoInterface interface {
 	FetchDropDown() ([]BillingPoDropDown, error)
 	SubmitFormCustomerPoData(billingPo BillingPo) error
 	FetchCustomerPoData(r *http.Request) ([]BillingPo, error)
