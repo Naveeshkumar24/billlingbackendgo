@@ -111,6 +111,10 @@ func (q *Query) FetchDropDown() ([]models.BillingPoDropDown, error) {
 }
 
 func (q *Query) SubmitFormBillingPoData(data models.BillingPo) error {
+	var totaltax, gross float64
+
+	totaltax = data.NetValue * 0.18
+	gross = data.NetValue + data.Totaltax
 	_, err := q.db.Exec(`
 		INSERT INTO  billingposubmitteddata (
 			engg_name, supplier, bill_no, bill_date, customer_name,
@@ -119,8 +123,8 @@ func (q *Query) SubmitFormBillingPoData(data models.BillingPo) error {
 		) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)`,
 		data.EnggName, data.Supplier, data.BillNo, data.BillDate,
 		data.CustomerName, data.CustomerPoNo, data.CustomerPoDate, data.ItemDescription,
-		data.BilledQty, data.Unit, data.NetValue, data.CGST, data.IGST, data.Totaltax,
-		data.Gross, data.DispatchThrough,
+		data.BilledQty, data.Unit, data.NetValue, data.CGST, data.IGST, totaltax,
+		gross, data.DispatchThrough,
 	)
 
 	if err != nil {
@@ -173,6 +177,11 @@ func (q *Query) FetchBillingPoData() ([]models.BillingPo, error) {
 }
 
 func (q *Query) UpdateBillingPoData(data models.BillingPo) error {
+	var totaltax, gross float64
+
+	totaltax = data.NetValue * 0.18
+	gross = data.NetValue + data.Totaltax
+
 	_, err := q.db.Exec(`
 		UPDATE billingposubmitteddata SET
 			engg_name= $1, supplier = $2, bill_no = $3, bill_date = $4, 
@@ -182,8 +191,8 @@ func (q *Query) UpdateBillingPoData(data models.BillingPo) error {
 		WHERE id = $17`,
 		data.EnggName, data.Supplier, data.BillNo, data.BillDate,
 		data.CustomerName, data.CustomerPoNo, data.CustomerPoDate, data.ItemDescription,
-		data.BilledQty, data.Unit, data.NetValue, data.CGST, data.IGST, data.Totaltax,
-		data.Gross, data.DispatchThrough, data.ID,
+		data.BilledQty, data.Unit, data.NetValue, data.CGST, data.IGST, totaltax,
+		gross, data.DispatchThrough, data.ID,
 	)
 
 	if err != nil {
