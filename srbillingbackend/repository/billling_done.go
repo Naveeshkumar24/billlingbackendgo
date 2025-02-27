@@ -13,21 +13,6 @@ type BillingPoRepository struct {
 	db *sql.DB
 }
 
-// FetchCustomerPoData implements models.BillingPoInterface.
-func (b *BillingPoRepository) FetchCustomerPoData(r *http.Request) ([]models.BillingPo, error) {
-	panic("unimplemented")
-}
-
-// SubmitFormCustomerPoData implements models.BillingPoInterface.
-func (b *BillingPoRepository) SubmitFormCustomerPoData(billingPo models.BillingPo) error {
-	panic("unimplemented")
-}
-
-// UpdateCustomerPoData implements models.BillingPoInterface.
-func (b *BillingPoRepository) UpdateCustomerPoData(customerPo models.BillingPo) error {
-	panic("unimplemented")
-}
-
 func NewBillingPoRepository(db *sql.DB) *BillingPoRepository {
 	return &BillingPoRepository{
 		db: db,
@@ -79,7 +64,7 @@ func (b *BillingPoRepository) UpdateBillingPoData(data models.BillingPo) error {
 	return nil
 }
 
-func (b *BillingPoRepository) DeleteBillingPo(id int) error {
+func (b *BillingPoRepository) DeleteBillingPoData(id int) error {
 	tx, err := b.db.Begin()
 	if err != nil {
 		log.Printf("Failed to begin transaction: %v", err)

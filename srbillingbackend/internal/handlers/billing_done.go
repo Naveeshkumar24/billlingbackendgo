@@ -114,7 +114,7 @@ func (b *BillingPoHandler) DeleteBillingPoHandler(w http.ResponseWriter, r *http
 		return
 	}
 
-	err = b.billingRepo.DeleteBillingPo(id)
+	err = b.billingRepo.DeleteBillingPoData(id)
 	if err != nil {
 		log.Printf("Error deleting record: %v", err)
 		http.Error(w, "Failed to delete record", http.StatusInternalServerError)
