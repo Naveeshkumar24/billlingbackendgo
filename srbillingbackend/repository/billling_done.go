@@ -65,25 +65,11 @@ func (b *BillingPoRepository) UpdateBillingPoData(data models.BillingPo) error {
 }
 
 func (b *BillingPoRepository) DeleteBillingPoData(id int) error {
-	tx, err := b.db.Begin()
+	query := database.NewQuery(b.db)
+	err := query.DeleteBillingPoData(id)
 	if err != nil {
-		log.Printf("Failed to begin transaction: %v", err)
+		log.Printf("Failed to delete billing PO data: %v", err)
 		return err
 	}
-
-	defer func() {
-		if err != nil {
-			tx.Rollback()
-		} else {
-			tx.Commit()
-		}
-	}()
-
-	_, err = tx.Exec("DELETE FROM billingposubmitteddata WHERE id = $1", id)
-	if err != nil {
-		log.Printf("Failed to delete record with id %d: %v", id, err)
-		return err
-	}
-
 	return nil
 }

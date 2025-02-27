@@ -204,12 +204,25 @@ func (q *Query) UpdateBillingPoData(data models.BillingPo) error {
 	return nil
 }
 func (q *Query) DeleteBillingPoData(id int) error {
-	_, err := q.db.Exec(`DELETE FROM billingposubmitteddata WHERE id = $1`, id)
+	tx, err := q.db.Begin()
 	if err != nil {
-		log.Printf("Failed to delete BillingPo data for ID %d: %v", id, err)
+		log.Printf("Failed to begin transaction: %v", err)
 		return err
 	}
 
-	log.Printf("BillingPo data deleted successfully for ID %d.", id)
+	defer func() {
+		if err != nil {
+			tx.Rollback()
+		} else {
+			tx.Commit()
+		}
+	}()
+
+	_, err = tx.Exec("DELETE FROM billingposubmitteddata WHERE id = $1", id)
+	if err != nil {
+		log.Printf("Failed to delete record with id %d: %v", id, err)
+		return err
+	}
+
 	return nil
 }
