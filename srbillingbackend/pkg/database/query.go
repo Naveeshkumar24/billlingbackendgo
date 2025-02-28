@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Naveeshkumar24/internal/models"
+	"github.com/naveeshkumar24/internal/models"
 )
 
 type Query struct {

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Naveeshkumar24/internal/models"
+	"github.com/naveeshkumar24/internal/models"
 	"github.com/xuri/excelize/v2"
 )
 

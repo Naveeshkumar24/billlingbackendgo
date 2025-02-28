@@ -3,10 +3,10 @@ package main
 import (
 	"database/sql"
 
-	"github.com/Naveeshkumar24/internal/handlers"
-	"github.com/Naveeshkumar24/internal/middleware"
-	"github.com/Naveeshkumar24/repository"
 	"github.com/gorilla/mux"
+	"github.com/naveeshkumar24/internal/handlers"
+	"github.com/naveeshkumar24/internal/middleware"
+	"github.com/naveeshkumar24/repository"
 )
 
 func registerRouter(db *sql.DB) *mux.Router {

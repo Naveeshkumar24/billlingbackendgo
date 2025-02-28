@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/Naveeshkumar24/internal/models"
+	"github.com/naveeshkumar24/internal/models"
 	"github.com/xuri/excelize/v2"
 )
 

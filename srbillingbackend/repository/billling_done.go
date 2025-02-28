@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Naveeshkumar24/internal/models"
-	"github.com/Naveeshkumar24/pkg/database"
+	"github.com/naveeshkumar24/internal/models"
+	"github.com/naveeshkumar24/pkg/database"
 )
 
 type BillingPoRepository struct {

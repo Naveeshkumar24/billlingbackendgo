@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Naveeshkumar24/pkg/database"
 	"github.com/joho/godotenv"
+	"github.com/naveeshkumar24/pkg/database"
 )
 
 func main() {

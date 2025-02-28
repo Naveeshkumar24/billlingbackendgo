@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/Naveeshkumar24/internal/models"
-	"github.com/Naveeshkumar24/pkg/utils"
-	"github.com/Naveeshkumar24/repository"
 	"github.com/gorilla/mux"
+	"github.com/naveeshkumar24/internal/models"
+	"github.com/naveeshkumar24/pkg/utils"
+	"github.com/naveeshkumar24/repository"
 )
 
 type BillingPoHandler struct {
